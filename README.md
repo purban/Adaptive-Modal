@@ -31,8 +31,12 @@ Usage
 
     <a href="#" data-adaptive-modal-id="myFirstModal">First modal</a>
     <a href="#" data-adaptive-modal-id="mySecondModal">Second modal</a>
-    <div class="adaptive-modal" data-adaptive-modal-id="myFirstModal">Hello World! <a href="#" class="adaptive-modal-close">Close the modal</a></div>
-    <div class="adaptive-modal" data-adaptive-modal-id="mySecondModal">Peace off! <a href="#" class="adaptive-modal-close">Close the modal</a></div>
+    <div class="adaptive-modal" data-adaptive-modal-id="myFirstModal">
+      Hello World! <a href="#" class="adaptive-modal-close">Close the modal</a>
+    </div>
+    <div class="adaptive-modal" data-adaptive-modal-id="mySecondModal">
+      Peace off! <a href="#" class="adaptive-modal-close">Close the modal</a>
+    </div>
 
 ### CSS
 
@@ -76,6 +80,7 @@ Options
 -------
 
 You can customize Adaptive Modal with some options:
+
 * name: the prefix use which defines `name`-overlay (the overlay), `name`-window (the modal), `name`-content (the modal's content), `name`-close (class to bind a click event to close the modal)
 * duration: the number of milliseconds before hiding the modal
 * opacity: the overlay opacity
