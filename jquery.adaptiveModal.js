@@ -81,8 +81,12 @@
           // Display overlay
           overlay.fadeIn(150);
 
-          // Insert the corresponding content and display modal
-          modal.find('#' + settings.name + '-content').html($('.' + settings.name + '[data-' + settings.name  + '-id=' + $(this).attr('data-' + settings.name + '-id') +']').html());
+          // Insert the corresponding content and display modal: 1) retrieve the modal content div
+          var modal_content = modal.find('#' + settings.name + '-content');
+          // Empty modal content div
+          modal_content.empty();
+          // Clone the concerned element inside the modal content div
+          $('.' + settings.name + '[data-' + settings.name  + '-id="' + $(this).attr('data-' + settings.name + '-id') + '"]').clone(true, true).removeClass(settings.name).appendTo(modal_content);
           modal.fadeIn(150);
           $('.' + settings.name + '-close').click(function (e) {
             e.preventDefault();
