@@ -85,8 +85,8 @@
           var modal_content = modal.find('#' + settings.name + '-content');
           // Empty modal content div
           modal_content.empty();
-          // Clone the concerned element inside the modal content div
-          $('.' + settings.name + '[data-' + settings.name  + '-id="' + $(this).attr('data-' + settings.name + '-id') + '"]').clone(true, true).removeClass(settings.name).appendTo(modal_content);
+          // Move the concerned element inside the modal content div
+          $('.' + settings.name + '[data-' + settings.name  + '-id="' + $(this).attr('data-' + settings.name + '-id') + '"]').removeClass(settings.name).appendTo(modal_content);
           modal.fadeIn(150);
           $('.' + settings.name + '-close').click(function (e) {
             e.preventDefault();
@@ -118,8 +118,12 @@
     };
   },
   closeModal = function (modal, overlay, settings) {
+    var modalTmp = modal.find('[data-' + settings.name  + '-id]').addClass(settings.name);
+
     modal.fadeOut(settings.duration);
     overlay.fadeOut(settings.duration);
+
+    $('[data-' + settings.name  + '-id="' + modalTmp.attr('data-' + settings.name + '-id') + '"]').not(modalTmp).after(modalTmp);
   };
 
   $.fn[pluginName] = function(method) {
