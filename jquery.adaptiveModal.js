@@ -88,6 +88,7 @@
           // Move the concerned element inside the modal content div
           $('.' + settings.name + '[data-' + settings.name  + '-id="' + $(this).attr('data-' + settings.name + '-id') + '"]').removeClass(settings.name).appendTo(modal_content);
           modal.fadeIn(150);
+          $('html, body').animate({scrollTop:0}, 'slow');
           $('.' + settings.name + '-close').click(function (e) {
             e.preventDefault();
             closeModal(modal, overlay, settings);
@@ -118,12 +119,13 @@
     };
   },
   closeModal = function (modal, overlay, settings) {
-    var modalTmp = modal.find('[data-' + settings.name  + '-id]').addClass(settings.name);
+    var modalTmp = modal.find('[data-' + settings.name  + '-id]');
 
-    modal.fadeOut(settings.duration);
+    modal.fadeOut(settings.duration, function () {
+      modalTmp.addClass(settings.name);
+      $('[data-' + settings.name  + '-id="' + modalTmp.attr('data-' + settings.name + '-id') + '"]').not(modalTmp).after(modalTmp);
+    });
     overlay.fadeOut(settings.duration);
-
-    $('[data-' + settings.name  + '-id="' + modalTmp.attr('data-' + settings.name + '-id') + '"]').not(modalTmp).after(modalTmp);
   };
 
   $.fn[pluginName] = function(method) {
