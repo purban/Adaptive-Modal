@@ -78,6 +78,10 @@
         $this.bind('click.' + pluginName, function (e) {
           e.preventDefault();
 
+          // Check that the container of the targeted modal exists
+          if ($('.' + settings.name + '[data-' + settings.name  + '-id="' + $(this).attr('data-' + settings.name + '-id') + '"]').length == 0)
+            return ;
+
           // Display overlay
           overlay.fadeIn(150);
 
